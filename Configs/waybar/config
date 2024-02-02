@@ -1,0 +1,135 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "height": 45,
+
+
+
+
+    "modules-left": [
+        "custom/logo",
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+	"custom/mediaprev",
+	"custom/mediaplaypause",
+	"custom/medianext",
+	"mpris",
+        "clock"
+    ],
+
+    "modules-right": [
+        "tray",
+        "network",
+        "pulseaudio#output",
+        "pulseaudio#input",
+        "custom/power"
+    ],
+
+
+
+
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "active": "󱓻",
+            "urgent": "󱓻"
+        },
+    },
+
+
+    "tray": {
+	"icon-size": 21,
+        "spacing": 10
+    },
+
+
+    "clock": {
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "format-alt": "  {:%a, %d %b %Y}",
+        "format": "  {:%H:%M}"
+    },
+
+
+    "network": {
+        "format-wifi" : "{icon}",
+        "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+        "format-ethernet": "󰀂",
+	"format-alt" : "󱛇",
+        "format-disconnected" : "󰖪",
+	"tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+	"tooltip-format-disconnected": "Disconnected",
+	"interval": 5,
+	"nospacing": 1,
+    },
+
+
+    "pulseaudio#input": {
+    	"format-source": " {volume}%",
+    	"format-source-muted": " off",
+    	"format": "{format_source}",
+    	"scroll-step": 1,
+    	"smooth-scrolling-threshold": 1,
+    	"max-volume": 100,
+    	"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    	"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+    	"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+    },
+    "pulseaudio#output": {
+    	"format": "{icon} {volume}%",
+    	"format-muted": " off",
+    	"format-icons": {
+    	    "default": ["", "", ""]
+    	},
+    	"max-volume": 200,
+    	"scroll-step": 5,
+    	"smooth-scrolling-threshold": 1,
+    	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	},
+
+
+    "custom/logo": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "~/.config/rofi/launchers/type-2/launcher.sh"
+    },
+
+
+    "custom/mediaprev": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify prev"
+    },
+    "custom/mediaplaypause": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify play-pause"
+    },
+    "custom/medianext": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "playerctl --player=spotify next"
+    },
+    "mpris": {
+	    "ellipsis": "...",
+	    "artist-len": "10",
+	    "title-len": "10",
+	    "tooltip": false, 
+    	"format": "   {artist} - {title} ",
+    },
+
+}
