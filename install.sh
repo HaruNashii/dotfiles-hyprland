@@ -3,7 +3,7 @@
 
 #===========YAY AUR HELPER INSTALLATION===========#
 if ! command -v yay &> /dev/null; then
-    sudo pacman -Sy --needed --noconfirm git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && clear && cd .. && rm -rf yay
+    sudo pacman -Sy --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && clear && cd .. && rm -rf yay
 fi
 
 
@@ -11,8 +11,8 @@ fi
 if ! command -v git &> /dev/null; then
     sudo pacman -Sy --noconfirm git
 fi
-sudo pacman -Sy --noconfirm tilix mpv ranger rofi waybar zsh curl neovim grim slurp wl-clipboard qt5-quickcontrols qt5-quickcontrols2 qt5-graphicaleffects dconf
-yay --answerclean All --answerdiff None -Sy --noconfirm ueberzug mpvpaper
+sudo pacman -Sy tilix mpv ranger rofi waybar zsh curl neovim grim slurp wl-clipboard qt5-quickcontrols qt5-quickcontrols2 qt5-graphicaleffects dconf
+yay --answerclean All --answerdiff None -Sy --noconfirm ueberzugpp mpvpaper
 if [ ! -f "$HOME/.local/share/fonts/fonts/ttf/JetBrainsMono-Bold.ttf" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 fi
@@ -85,7 +85,19 @@ cp -rf $PWD/Configs/waybar $HOME/.config/
 if [ -d "$HOME/.config/rofi" ]; then
     mv -f $HOME/.config/rofi $PWD/Backups/
 fi
-cp -rf $PWD/Configs/rofi $HOME/.config/
+mkdir $HOME/.config/rofi
+git clone --depth=1 https://github.com/adi1090x/rofi.git $PWD/Configs/rofi
+cd $PWD/Configs/rofi 
+chmod a+x setup.sh
+./setup.sh
+if [ -f "$HOME/.config/rofi/launchers/type-2/shared/colors.rasi" ]; then 
+    mv -f $HOME/.config/rofi/launchers/type-2/shared/colors.rasi $PWD/Backups/
+fi
+cd ..
+cd ..
+sed -i 's/theme=.*/theme=style-7/' $HOME/.config/rofi/launchers/type-2/launcher.sh
+cp -f $PWD/Configs/Rofi_user_configs/colors.rasi $HOME/.config/rofi/launchers/type-2/shared/
+cp -f $PWD/Configs/Rofi_user_configs/launcher_run.sh $HOME/.config/rofi/launchers/type-2/
 
 
 #================NEOFETCH CONFIGS================#
