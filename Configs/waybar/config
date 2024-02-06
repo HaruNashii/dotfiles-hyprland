@@ -126,10 +126,11 @@
     },
     "mpris": {
 	    "ellipsis": "...",
-	    "artist-len": "10",
-	    "title-len": "10",
+	    "artist-len": 100,
+	    "title-len": 20,
+      "max-length": 60,
 	    "tooltip": false, 
-    	"format": "   {artist} - {title} ",
+    	"format": "   {artist} - {title} "
     },
 
 }
