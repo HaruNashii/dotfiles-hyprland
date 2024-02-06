@@ -128,7 +128,7 @@
 	    "ellipsis": "...",
 	    "artist-len": 100,
 	    "title-len": 20,
-      "max-length": 60,
+      	    "max-length": 60,
 	    "tooltip": false, 
     	"format": "   {artist} - {title} "
     },
